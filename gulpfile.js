@@ -52,8 +52,10 @@ gulp.task('scripts', function(){
 		.pipe(browserSync.stream());
 });
 
-gulp.task('default', ['browser-sync'], function(){
-	gulp.watch('theme/styles/**/*.scss', ['styles']);
-	gulp.watch('theme/scripts/**/*.js', ['scripts']);
-	gulp.watch(['**/*.html', '!node_modules'], ['bs-reload']);
+gulp.task("watch", function () {
+  gulp.watch("theme/styles/**/*.scss", ["styles"]);
+  gulp.watch("theme/scripts/**/*.js", ["scripts"]);
+  gulp.watch(["**/*.html", "!node_modules"], ["bs-reload"]);
 });
+
+gulp.task("default", gulp.series("browser-sync", "watch"));
